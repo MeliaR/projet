@@ -16,26 +16,29 @@ struct utilisateur {
 // Elle génère deux nombres aléatoires, demande à l'utilisateur le résultat et vérifie sa réponse.
 void addtion(int a, int b, int *points) {
     int res;
-    int i = 1;
-    while((a + b) != res && i < 4){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
+    int i = 0;
+    while((a + b) != res && i < 3){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
         printf("%d + %d = ?\n", a, b);
         printf("Entrez le resultat : ");
         scanf("%d", &res);
         printf("Vous avez entré %d\n", res);
         i ++;
     }
+
     // On regarde combien d'essais a été utilisé et donne les points en fonction
-    if(i == 1){ 
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
-        (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
-    }
-    else if(i == 2){
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
-        (*points) = (*points) + 5;
-    }
-    else if(i == 3){
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 1 point !!\n", i);
-        (*points) ++;
+    if((a + b) == res){
+        if(i == 1){ 
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
+            (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
+        }
+        else if(i == 2){
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
+            (*points) = (*points) + 5;
+        }
+        else {
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 1 point !!\n", i);
+            (*points) ++;
+        }
     }
     else{
         printf("Vous n'avez pas trouvé le bon résulat qui est : %d et vous ne gagnez pas de point. \n", a + b);
@@ -45,42 +48,45 @@ void addtion(int a, int b, int *points) {
 // Fonction pour effectuer une multiplication
 void multiplication(int a, int b, int *points) {
     int res;
-    int i = 1;
-    while((a * b) != res && i < 4){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
+    int i = 0;
+    while((a * b) != res && i < 3){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
         printf("%d * %d = ?\n", a, b);
         printf("Entrez le resultat : ");
         scanf("%d", &res);
         printf("Vous avez entré %d\n", res);
         i ++;
     }
+
     // On regarde combien d'essais a été utilisé et donne les points en fonction 
-    if(i == 1){ 
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
-        (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
-    }
-    else if(i == 2){
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
-        (*points) = (*points) + 5;
-    }
-    else if(i == 3){
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 1 point !!\n", i);
-        (*points) ++;
+    if((a * b) == res){
+        if(i == 1){ 
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
+            (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
+        }
+        else if(i == 2){
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
+            (*points) = (*points) + 5;
+        }
+        else{
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 1 point !!\n", i);
+            (*points) ++;
+        }
     }
     else{
-        printf("Vous n'avez pas trouvé le bon résulat qui est : %d et vous ne gagnez pas de point. \n", a + b);
+        printf("Vous n'avez pas trouvé le bon résulat qui est : %d et vous ne gagnez pas de point. \n", a * b);
     }
 }
 
 // Fonction pour effectuer une soustraction
 void soustraction(int a, int b, int *points) {
     int res;
-    int i = 1;
+    int i = 0;
     if (a < b) { // Permet de toujours soustraire le plus grand nombre par le plus petit
         int z = a;
         a = b;
         b = z;
     }
-    while((a - b) != res && i < 4){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
+    while((a - b) != res && i < 3){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
         printf("%d - %d = ?\n", a, b);
         printf("Entrez le resultat : ");
         scanf("%d", &res);
@@ -88,20 +94,22 @@ void soustraction(int a, int b, int *points) {
         i ++;
     }
     // On regarde combien d'essais a été utilisé et donne les points en fonction 
-    if(i == 1){ 
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
-        (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
-    }
-    else if(i == 2){
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
-        (*points) = (*points) + 5;
-    }
-    else if(i == 3){
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 1 point !!\n", i);
-        (*points) ++;
+    if((a - b) == res){
+        if(i == 1){ 
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
+            (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
+        }
+        else if(i == 2){
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
+            (*points) = (*points) + 5;
+        }
+        else{
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 1 point !!\n", i);
+            (*points) ++;
+        }
     }
     else{
-        printf("Vous n'avez pas trouvé le bon résulat qui est : %d et vous ne gagnez pas de point. \n", a + b);
+        printf("Vous n'avez pas trouvé le bon résulat qui est : %d et vous ne gagnez pas de point. \n", a - b);
     }
 }
 
@@ -110,21 +118,37 @@ void tables_multi(int a, int *points) {
     int res;
     int res1;
     int erreur = 0;
+
     for (int i = 0; i <= 10; i++) { // Boucle pour afficher la table de multiplications
         printf("%d * %d = %d \n", a, i, a * i);
     }
     printf("\n");
+
     for (int i = 0; i <= 10; i++) { // Boucle pour afficher et demander les résultats des multiplications
         res = a * i;
         printf("%d * %d = ", a, i);
-        scanf("%d", &res1); // L'utilisateur entre sa réponse
-        if (res == res1) { // Vérification de la réponse
-            printf("Gagné\n");
-        } else {
-            printf("Perdu\n");
-            erreur ++;
+
+        char buffer[100]; // declare un tableau pour mettre ce que l'utilisateur a entré
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) { // On lit toute la ligne
+            if (sscanf(buffer, "%d", &res1) == 1) { // Si on arrive à lire un entier
+                if (res1 == res) { // Compare le résultat
+                    printf("Gagné\n");
+                } else {
+                    printf("Perdu\n");
+                    erreur++;
+                }
+            } 
+            else {
+                printf("Entrée invalide, comptée comme une erreur.\n");
+                erreur++;
+            }
+        }
+        else {
+            printf("Erreur de lecture, comptée comme une erreur.\n");
+            erreur++;
         }
     }
+
     // on regarde le nombre d'erreur et on met les points en fonction
     if(erreur == 0){
         printf("Vous avez eu tout bon, vous gagnez 10 points ! \n");
@@ -146,36 +170,40 @@ void tables_multi(int a, int *points) {
 // Fonction pour effectuer une division
 void division(int a, int b, int *points) {
     int res;
-    int i = 1;
+    int i = 0;
     if (a < b) { // Permet d'éviter les divisions où le résultat serait une fraction
         int z = a;
         a = b;
         b = z;
     }
-    while((a / b) != res && i < 4){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
+    while((a / b) != res && i < 3){   // Permet de calculer le nombre d'essais, il n'y a que trois essais
         printf("%d / %d = ?\n", a, b);
         printf("Entrez le resultat : ");
         scanf("%d", &res);
         printf("Vous avez entré %d\n", res);
         i ++;
     }
+    
     // On regarde combien d'essais a été utilisé et donne les points en fonction 
-    if(i == 1){ 
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
-        (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
-    }
-    else if(i == 2){
-        printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
-        (*points) = (*points) + 5;
-    }
-    else if(i == 3){
-        printf("Bravo, vous avez réussi du %d coup vous gagnez 1 point !!\n", i);
-        (*points) ++;
+    if((a / b) == res){
+        if(i == 1){ 
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 10 points !!\n", i);
+            (*points) = (*points) + 10; // Incrémente les points en cas de bonne réponse
+        }
+        else if(i == 2){
+            printf("Bravo, vous avez réussi du %d coup et vous gagnez 5 points !!\n", i);
+            (*points) = (*points) + 5;
+        }
+        else{
+            printf("Bravo, vous avez réussi du %d coup vous gagnez 1 point !!\n", i);
+            (*points) ++;
+        }
     }
     else{
         printf("Vous n'avez pas trouvé le bon résulat qui est : %d et vous ne gagnez pas de point. \n", a + b);
     }
 }
+
 
 int main(void) {
     struct utilisateur user; // Création d'une instance de la structure utilisateur

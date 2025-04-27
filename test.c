@@ -110,36 +110,59 @@ void tables_multi(int a, int *points) {
     int res;
     int res1;
     int erreur = 0;
+    char buffer[100]; // Buffer pour stocker l'entrée utilisateur
+
+    // Affichage de la table de multiplication
     for (int i = 0; i <= 10; i++) { // Boucle pour afficher la table de multiplications
         printf("%d * %d = %d \n", a, i, a * i);
     }
     printf("\n");
+
+    // Demander les résultats
     for (int i = 0; i <= 10; i++) { // Boucle pour afficher et demander les résultats des multiplications
         res = a * i;
         printf("%d * %d = ", a, i);
-        scanf("%d", &res1); // L'utilisateur entre sa réponse
-        if (res == res1) { // Vérification de la réponse
-            printf("Gagné\n");
-        } else {
-            printf("Perdu\n");
-            erreur ++;
+
+        // Lire l'entrée de l'utilisateur
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) { // On lit toute la ligne
+            // Nettoyer le buffer pour enlever le '\n' restant de fgets
+            buffer[strcspn(buffer, "\n")] = 0;  // Enlève le '\n' si présent
+
+            // Si on arrive à lire un entier avec sscanf
+            if (sscanf(buffer, "%d", &res1) == 1) { 
+                if (res1 == res) { // Comparaison du résultat
+                    printf("Gagné\n");
+                } else {
+                    printf("Perdu\n");
+                    erreur++;
+                }
+            } 
+            else {
+                printf("Entrée invalide, comptée comme une erreur.\n");
+                erreur++;
+            }
+        }
+        else {
+            printf("Erreur de lecture, comptée comme une erreur.\n");
+            erreur++;
         }
     }
-    // on regarde le nombre d'erreur et on met les points en fonction
-    if(erreur == 0){
+
+    // Gestion des points en fonction des erreurs
+    if (erreur == 0) {
         printf("Vous avez eu tout bon, vous gagnez 10 points ! \n");
         (*points) = (*points) + 10;
     }
-    else if(erreur == 2){
+    else if (erreur == 2) {
         printf("Vous avez fait 2 erreurs, vous gagnez 5 points ! \n");
         (*points) = (*points) + 5;
     }
-    else if (erreur == 3){
+    else if (erreur == 3) {
         printf("Vous avez fait 3 erreurs, vous gagnez 1 point ! \n");
-        (*points) ++;
+        (*points)++;
     }
-    else{
-        printf("Vous ne gagnez pas de point car il y eu plus de 3 erreurs. \n");
+    else {
+        printf("Vous ne gagnez pas de point car il y a eu plus de 3 erreurs. \n");
     }
 }
 
@@ -176,6 +199,7 @@ void division(int a, int b, int *points) {
         printf("Vous n'avez pas trouvé le bon résulat qui est : %d et vous ne gagnez pas de point. \n", a + b);
     }
 }
+
 
 int main(void) {
     struct utilisateur user; // Création d'une instance de la structure utilisateur
@@ -242,7 +266,6 @@ int main(void) {
         printf(" |3 : Multiplications            | \n");
         printf(" |4 : Tables des multiplications | \n");
         printf(" |5 : Divisions                  | \n");
-        printf(" |6 : Jeu des opérations         | \n");
         printf(" |0 : Sortir du jeu              | \n");
         printf(" +-------------------------------+ \n");
         printf(" Quel est votre choix ? ");
@@ -281,9 +304,6 @@ int main(void) {
                 b = rand() % 10 + 1;
                 division(a, b, &user.points);
                 break;
-            case 6:
-                printf("Jeu des opérations \n");
-                
             default:
                 printf("Erreur : le choix doit être compris entre 0 et 5 \n");
         }
